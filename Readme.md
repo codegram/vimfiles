@@ -4,6 +4,14 @@ These are the new Codegram vimfiles!
 
 ## Installing
 
+### One-liner
+
+If you trust me, do this:
+
+    git clone https://github.com/codegram/vimfiles.git ~/.vim && rm ~/.vimrc && ln -s ~/.vim/vimrc ~/.vimrc && git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle && vim +BundleInstall +qa!
+
+### Manual way
+
 Clone this repo:
 
     $ git clone https://github.com/codegram/vimfiles.git ~/.vim
