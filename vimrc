@@ -98,6 +98,7 @@ set formatoptions=n
 set colorcolumn=79
 set tw=79
 set t_Co=256
+set iskeyword-=_
 
 if has("gui_running")
     set guioptions-=T " no toolbar set guioptions-=m " no menus
