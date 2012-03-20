@@ -191,8 +191,8 @@ map <C-n> :cn<CR>
 map <C-p> :cp<CR>
 
 " Fugitive (Git)
-nmap <leader>gs :Gstatus
-nmap <leader>gc :Gcommit
+nmap <leader>gs :Gstatus<CR>
+nmap <leader>gc :Gcommit<CR>
 
 " TComment
 map <Leader>co :TComment<CR>
