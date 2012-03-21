@@ -90,7 +90,7 @@ set visualbell
 set cursorline
 set ttyfast
 set textwidth=78
-set wildignore=.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif
+set wildignore=.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,.gitkeep
 set grepprg=ack
 set textwidth=79
 set formatoptions=n
