@@ -33,6 +33,7 @@ Bundle 'tpope/vim-cucumber'
 Bundle 'bbommarito/vim-slim'
 
 Bundle 'vim-scripts/ctags.vim'
+Bundle 'hced/bufkill-vim'
 
 " Default color theme
 Bundle 'sjl/badwolf'
