@@ -35,6 +35,7 @@ Bundle 'bbommarito/vim-slim'
 Bundle 'scrooloose/nerdtree'
 
 Bundle 'vim-scripts/ctags.vim'
+Bundle 'hced/bufkill-vim'
 
 " Default color theme
 Bundle 'sjl/badwolf'
@@ -43,9 +44,8 @@ colorscheme badwolf
 " ------------
 " VIM SETTINGS
 " ------------
-filetype plugin indent on
-" colorscheme badwolf
 syntax on
+filetype plugin indent on
 
 set autoindent
 set autoread
@@ -93,7 +93,7 @@ set visualbell
 set cursorline
 set ttyfast
 set textwidth=78
-set wildignore=.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif
+set wildignore=.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,.gitkeep
 set grepprg=ack
 set textwidth=79
 set formatoptions=n
@@ -112,6 +112,12 @@ if has("gui_running")
     set mouse=v
 endif
 set guifont=Monaco:h12
+
+" Autocommands depending on file type
+autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber set ai sw=2 sts=2 et
+autocmd FileType python set sw=4 sts=4 et
+autocmd BufRead *.md  set ai formatoptions=tcroqn2 comments=n:&gt;
+autocmd BufRead *.markdown  set ai formatoptions=tcroqn2 comments=n:&gt;
 
 " --------
 " MAPPINGS
@@ -153,7 +159,7 @@ nmap <leader>D :bufdo bd<CR>
 nmap <silent> <leader>b :FufBuffer<CR>
 
 " Splits
-nnoremap <leader>v :vs<CR>
+nnoremap <leader>v :vs<CR> <C-w>l
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
@@ -179,6 +185,70 @@ function! InsertTabWrapper()
 endfunction
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <s-tab> <c-n>
+
+" Rename current file
+function! RenameFile()
+    let old_name = expand('%')
+    let new_name = input('New file name: ', expand('%'))
+    if new_name != '' && new_name != old_name
+        exec ':saveas ' . new_name
+        exec ':silent !rm ' . old_name
+        redraw!
+    endif
+endfunction
+map <leader>n :call RenameFile()<cr>
+
+"--------------
+" RUNNING TESTS
+"--------------
+function! RunTests(filename)
+    " Write the file and run tests for the given filename
+    :w
+    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
+    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
+    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
+    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
+    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
+    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
+    if match(a:filename, '\.feature') != -1
+      exec ":!cucumber " . a:filename
+    elseif match(a:filename, '_spec\.rb') != -1
+      exec ":!rspec " . a:filename
+    elseif match(a:filename, '_test\.rb') != -1
+      exec ":!ruby -I'lib:test' " . a:filename
+    end
+endfunction
+
+function! SetTestFile()
+    " Set the spec file that tests will be run for.
+    let t:grb_test_file=@%
+endfunction
+
+function! RunTestFile(...)
+    if a:0
+        let command_suffix = a:1
+    else
+        let command_suffix = ""
+    endif
+
+    " Run the tests for the previously-marked file.
+    let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\|_test.rb\)$') != -1
+    if in_test_file
+        call SetTestFile()
+    elseif !exists("t:grb_test_file")
+        return
+    end
+    call RunTests(t:grb_test_file . command_suffix)
+endfunction
+
+function! RunNearestTest()
+    let spec_line_number = line('.')
+
+    call RunTestFile(":" . spec_line_number)
+endfunction
+
+map <leader>t :call RunTestFile()<CR>
+map <leader>T :call RunNearestTest()<CR>
 
 " ----------------
 " PLUG-IN SETTINGS
@@ -220,6 +290,9 @@ let g:ctrlp_map = '<leader>o'
 
 " NERDtree
 nmap <silent> <leader>p :NERDTreeToggle<cr>%
+" Surround
+" ,' switches ' and "
+nnoremap <leader>' ""yls<c-r>={'"': "'", "'": '"'}[@"]<cr><esc>
 
 " --------------------
 " CUSTOM CONFIGURATION
