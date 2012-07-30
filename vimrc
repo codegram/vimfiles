@@ -35,6 +35,8 @@ Bundle 'bbommarito/vim-slim'
 Bundle 'vim-scripts/ctags.vim'
 Bundle 'hced/bufkill-vim'
 
+Bundle 'scrooloose/syntastic'
+
 " Default color theme
 Bundle 'sjl/badwolf'
 colorscheme badwolf
@@ -209,7 +211,7 @@ function! RunTests(filename)
     :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
     :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
     if match(a:filename, '\.feature') != -1
-      exec ":!cucumber " . a:filename
+      exec ":!bundle exec spinach " . a:filename
     elseif match(a:filename, '_spec\.rb') != -1
       exec ":!rspec " . a:filename
     elseif match(a:filename, '_test\.rb') != -1
