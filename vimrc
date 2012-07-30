@@ -296,6 +296,11 @@ nmap <silent> <leader>p :NERDTreeToggle<cr>%
 " ,' switches ' and "
 nnoremap <leader>' ""yls<c-r>={'"': "'", "'": '"'}[@"]<cr><esc>
 
+" Syntastic
+let g:syntastic_check_on_open=1
+let g:syntastic_echo_current_error=1
+let g:syntastic_auto_jump=1
+
 " --------------------
 " CUSTOM CONFIGURATION
 " --------------------
