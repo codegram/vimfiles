@@ -35,6 +35,8 @@ Bundle 'bbommarito/vim-slim'
 Bundle 'vim-scripts/ctags.vim'
 Bundle 'hced/bufkill-vim'
 
+Bundle 'vim-ruby/vim-ruby'
+
 " Default color theme
 Bundle 'sjl/badwolf'
 colorscheme badwolf
@@ -173,15 +175,27 @@ vmap <Leader>gb :<C-U>!git blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("
 map <leader>r :!ruby -I"lib:test" %<cr>
 
 " Tab autocompletes / indents depending on the context
-function! InsertTabWrapper()
-  let col = col('.') - 1
-  if !col || getline('.')[col - 1] !~ '\k'
+function! Smart_TabComplete()
+  let line = getline('.')                         " current line
+
+  let substr = strpart(line, -1, col('.')+1)      " from the start of the current
+                                                  " line to one character right
+                                                  " of the cursor
+  let substr = matchstr(substr, "[^ \t]*$")       " word till cursor
+  if (strlen(substr)==0)                          " nothing to match on empty string
     return "\<tab>"
+  endif
+  let has_period = match(substr, '\.') != -1      " position of period, if any
+  let has_slash = match(substr, '\/') != -1       " position of slash, if any
+  if (!has_period && !has_slash)
+    return "\<C-X>\<C-P>"                         " existing text matching
+  elseif ( has_slash )
+    return "\<C-X>\<C-F>"                         " file matching
   else
-    return "\<c-p>"
+    return "\<C-X>\<C-O>"                         " plugin matching
   endif
 endfunction
-inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+inoremap <tab> <c-r>=Smart_TabComplete()<CR>
 inoremap <s-tab> <c-n>
 
 " Rename current file
@@ -210,10 +224,14 @@ function! RunTests(filename)
     :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
     if match(a:filename, '\.feature') != -1
       exec ":!cucumber " . a:filename
-    elseif match(a:filename, '_spec\.rb') != -1
-      exec ":!rspec " . a:filename
-    elseif match(a:filename, '_test\.rb') != -1
-      exec ":!ruby -I'lib:test' " . a:filename
+    else
+      if filereadable("script/test")
+        exec ":!script/test " . a:filename
+      elseif match(a:filename, '_test\.rb') != -1
+        exec ":!ruby -I'lib:test' " . a:filename
+      elseif match(a:filename, '_spec\.rb') != -1
+        exec ":!rspec --color --drb " . a:filename
+      end
     end
 endfunction
 
