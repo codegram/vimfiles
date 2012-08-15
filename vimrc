@@ -32,10 +32,13 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-cucumber'
 Bundle 'bbommarito/vim-slim'
 
+Bundle 'scrooloose/nerdtree'
+
 Bundle 'vim-scripts/ctags.vim'
 Bundle 'hced/bufkill-vim'
 
 Bundle 'vim-ruby/vim-ruby'
+Bundle 'scrooloose/syntastic'
 
 " Default color theme
 Bundle 'sjl/badwolf'
@@ -223,7 +226,7 @@ function! RunTests(filename)
     :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
     :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
     if match(a:filename, '\.feature') != -1
-      exec ":!cucumber " . a:filename
+      exec ":!bundle exec spinach " . a:filename
     else
       if filereadable("script/test")
         exec ":!script/test " . a:filename
@@ -304,9 +307,17 @@ map <F9> :tprev<CR>
 " Ctrl-p
 let g:ctrlp_map = '<leader>o'
 
+" NERDtree
+nmap <silent> <leader>p :NERDTreeToggle<cr>%
 " Surround
 " ,' switches ' and "
 nnoremap <leader>' ""yls<c-r>={'"': "'", "'": '"'}[@"]<cr><esc>
+
+" Syntastic
+let g:syntastic_check_on_open=1
+let g:syntastic_echo_current_error=1
+let g:syntastic_auto_jump=1
+let g:syntastic_auto_loc_list=1
 
 " --------------------
 " CUSTOM CONFIGURATION
