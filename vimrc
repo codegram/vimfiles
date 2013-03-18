@@ -32,6 +32,9 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-cucumber'
 Bundle 'slim-template/vim-slim'
 
+Bundle 'nono/vim-handlebars'
+Bundle 'kchmck/vim-coffee-script'
+
 Bundle 'scrooloose/nerdtree'
 
 Bundle 'vim-scripts/ctags.vim'
