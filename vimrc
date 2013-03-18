@@ -30,7 +30,7 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-cucumber'
-Bundle 'bbommarito/vim-slim'
+Bundle 'slim-template/vim-slim'
 
 Bundle 'scrooloose/nerdtree'
 
