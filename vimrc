@@ -44,6 +44,8 @@ Bundle 'hced/bufkill-vim'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'scrooloose/syntastic'
 
+Bundle 'codegram/vim-haml2slim'
+
 " Default color theme
 Bundle 'sjl/badwolf'
 colorscheme badwolf
@@ -323,6 +325,9 @@ let g:syntastic_check_on_open=1
 let g:syntastic_echo_current_error=1
 let g:syntastic_auto_jump=1
 let g:syntastic_auto_loc_list=1
+
+" Haml2Slim
+nnoremap <leader>h2s :call Haml2Slim(bufname("%"))<CR>
 
 " --------------------
 " CUSTOM CONFIGURATION
