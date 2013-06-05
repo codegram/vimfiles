@@ -3,10 +3,10 @@
 " Source: https://github.com/codegram/vimfiles
 
 set nocompatible
-filetype off
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
+Bundle 'gmarik/vundle'
 
 " ----------
 " Leader key
@@ -17,9 +17,8 @@ let maplocalleader = "."
 " -------
 " BUNDLES
 " -------
-Bundle 'gmarik/vundle'
 
-Bundle 'mileszs/ack.vim'
+Bundle 'rking/ag.vim'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-endwise'
 Bundle 'Townk/vim-autoclose'
@@ -31,6 +30,9 @@ Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-cucumber'
 Bundle 'slim-template/vim-slim'
+Bundle 'rking/vim-ruby-refactoring'
+Bundle 'tpope/vim-dispatch'
+Bundle 'airblade/vim-gitgutter'
 
 Bundle 'nono/vim-handlebars'
 Bundle 'kchmck/vim-coffee-script'
@@ -53,8 +55,6 @@ colorscheme badwolf
 " ------------
 " VIM SETTINGS
 " ------------
-syntax on
-filetype plugin indent on
 
 set autoindent
 set autoread
@@ -103,7 +103,6 @@ set cursorline
 set ttyfast
 set textwidth=78
 set wildignore+=.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,.gitkeep,.DS_Store
-set grepprg=ack
 set textwidth=79
 set formatoptions=n
 set colorcolumn=79
@@ -179,10 +178,10 @@ nnoremap <C-l> <C-w>l
 set pastetoggle=<F2>
 
 " Git blame
-vmap <Leader>gb :<C-U>!git blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p<CR>
+" vmap <Leader>gb :<C-U>!git blame <C-R>=expand("%:p") <CR> \\| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p<CR>
 
 " Execute current buffer as ruby
-map <leader>r :!ruby -I"lib:test" %<cr>
+" map <leader>r :!ruby -I"lib:test" %<cr>
 
 " Rename current file
 function! RenameFile()
@@ -260,8 +259,8 @@ map <leader>T :call RunNearestTest()<CR>
 let g:Powerline_symbols = 'fancy'
 let g:Powerline_cache_enabled = 1
 
-" Ack (Regex-based search)
-nmap <leader>a :Ack
+" Ag (Regex-based search)
+nmap <leader>a :Ag
 " Rotating among results
 map <C-n> :cn<CR>
 map <C-p> :cp<CR>
@@ -280,7 +279,7 @@ let g:AutoCloseProtectedRegions = ["Character"]
 " Ctags
 " You can use Ctrl-] to jump to a function.... Ctrl-p will jump back
 map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
-map <C-p> :pop<CR>
+" map <C-p> :pop<CR>
 
 " You can cycle through multiple function definitions using
 " these mappings. This maps to my windows key + left/right arrows
@@ -300,7 +299,7 @@ nnoremap <leader>' ""yls<c-r>={'"': "'", "'": '"'}[@"]<cr><esc>
 " Syntastic
 let g:syntastic_check_on_open=1
 let g:syntastic_echo_current_error=1
-let g:syntastic_auto_jump=1
+let g:syntastic_auto_jump=0
 let g:syntastic_auto_loc_list=1
 
 " Haml2Slim
@@ -313,3 +312,29 @@ let my_home = expand("$HOME/")
 if filereadable(my_home . '.vimrc.local')
   source ~/.vimrc.local
 endif
+
+if &term =~ '256color'
+  " Disable Background Color Erase (BCE) so that color schemes
+  " work properly when Vim is used inside tmux and GNU screen.
+  " See also http://snk.tuxfamily.org/log/vim-256color-bce.html
+  set t_ut=
+endif
+let g:clojure_align_multiline_strings = 1
+
+colorscheme badwolf
+
+nmap gh <Plug>GitGutterNextHunk
+nmap gH <Plug>GitGutterPrevHunk
+
+syntax on
+filetype indent plugin on
+
+" Vim dispatch
+autocmd FileType ruby
+      \ if expand('%') =~# '_test\.rb$' |
+      \   compiler rubyunit | setl makeprg=testrb\ \"%:p\" |
+      \ elseif expand('%') =~# '_spec\.rb$' |
+      \   compiler rspec | setl makeprg=bundle\ exec\ rspec\ \"%:p\" |
+      \ else |
+      \   compiler ruby | setl makeprg=ruby\ -wc\ \"%:p\" |
+      \ endif
