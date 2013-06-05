@@ -176,7 +176,7 @@ nnoremap <C-l> <C-w>l
 set pastetoggle=<F2>
 
 " Git blame
-" vmap <Leader>gb :<C-U>!git blame <C-R>=expand("%:p") <CR> \\| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p<CR>
+vmap <Leader>gb :<C-U>!git blame <C-R>=expand("%:p") <CR> \\\\| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p<CR>
 
 " Execute current buffer as ruby
 " map <leader>r :!ruby -I"lib:test" %<cr>
