@@ -38,17 +38,11 @@ Bundle 'airblade/vim-gitgutter'
 Bundle 'nono/vim-handlebars'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'pangloss/vim-javascript'
-
 Bundle 'scrooloose/nerdtree'
 
 Bundle 'vim-scripts/ctags.vim'
 Bundle 'hced/bufkill-vim'
-
 Bundle 'vim-ruby/vim-ruby'
-Bundle 'scrooloose/syntastic'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'nono/vim-handlebars'
-Bundle 'codegram/vim-haml2slim'
 
 Bundle 'codegram/vim-haml2slim'
 
