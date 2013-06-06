@@ -43,6 +43,7 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'vim-scripts/ctags.vim'
 Bundle 'hced/bufkill-vim'
 Bundle 'vim-ruby/vim-ruby'
+Bundle 'scrooloose/syntastic'
 
 Bundle 'codegram/vim-haml2slim'
 
