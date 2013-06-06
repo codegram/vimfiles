@@ -295,10 +295,10 @@ nmap <silent> <leader>p :NERDTreeToggle<cr>%
 nnoremap <leader>' ""yls<c-r>={'"': "'", "'": '"'}[@"]<cr><esc>
 
 " Syntastic
-let g:syntastic_check_on_open=1
-let g:syntastic_echo_current_error=1
+let g:syntastic_check_on_open=0
+let g:syntastic_echo_current_error=0
 let g:syntastic_auto_jump=0
-let g:syntastic_auto_loc_list=1
+let g:syntastic_auto_loc_list=0
 
 " Haml2Slim
 nnoremap <leader>h2s :call Haml2Slim(bufname("%"))<CR>
