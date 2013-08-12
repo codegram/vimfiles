@@ -338,3 +338,12 @@ autocmd FileType ruby
       \ else |
       \   compiler ruby | setl makeprg=ruby\ -wc\ \"%:p\" |
       \ endif
+
+" Rspec.vim mappings
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
+if executable("zeus")
+  let g:rspec_command = "!zeus rspec {spec}"
+endif
