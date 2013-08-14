@@ -345,5 +345,5 @@ map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
 map <Leader>r :call RunAllSpecs()<CR>
 if executable("zeus")
-  let g:rspec_command = "!zeus rspec {spec}"
+  let g:rspec_command = "!bundle exec zeus rspec {spec}"
 endif
