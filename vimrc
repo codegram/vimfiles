@@ -127,7 +127,7 @@ autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber set ai sw=2 
 autocmd FileType python set sw=4 sts=4 et
 autocmd BufRead *.md  set ai formatoptions=tcroqn2 comments=n:&gt;
 autocmd BufRead *.markdown  set ai formatoptions=tcroqn2 comments=n:&gt;
-
+autocmd BufWritePre * :%s/\s\+$//e " strip trailing whitespace
 " --------
 " MAPPINGS
 " --------
