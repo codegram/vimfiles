@@ -27,6 +27,9 @@ Bundle 'jmartindf/vim-tcomment'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'kien/ctrlp.vim'
 
+Bundle 'mattn/webapi-vim'
+Bundle 'mattn/gist-vim'
+
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-cucumber'
@@ -66,7 +69,7 @@ set expandtab
 set foldcolumn=0
 set foldlevel=9
 set foldmethod=indent
-set hidden 
+set hidden
 set history=1000
 set hlsearch
 set ignorecase
@@ -86,7 +89,7 @@ set ruler
 set shell=/bin/bash
 set shiftwidth=2
 set showcmd
-set showmatch 
+set showmatch
 set smartcase
 set tabstop=2
 set softtabstop=2
@@ -109,7 +112,7 @@ set colorcolumn=79
 set tw=79
 set t_Co=256
 set iskeyword-=_
-set clipboard=unnamed
+"set clipboard=unnamed
 
 if has("gui_running")
     set guioptions-=T " no toolbar set guioptions-=m " no menus
@@ -329,6 +332,13 @@ nmap gH <Plug>GitGutterPrevHunk
 syntax on
 filetype indent plugin on
 
+" Vim Gist
+let g:gist_clip_command = 'pbcopy'
+" let g:gist_clip_command = 'xclip -selection clipboard'
+let g:gist_detect_filetype = 1
+let g:gist_open_browser_after_post = 1
+let g:gist_post_private = 1
+
 " Vim dispatch
 autocmd FileType ruby
       \ if expand('%') =~# '_test\.rb$' |
@@ -347,3 +357,5 @@ map <Leader>r :call RunAllSpecs()<CR>
 if executable("zeus")
   let g:rspec_command = "!bundle exec zeus rspec {spec}"
 endif
+
+imap jk <Esc>
