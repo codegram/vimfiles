@@ -37,7 +37,6 @@ Bundle 'slim-template/vim-slim'
 Bundle 'leebo/vim-slim'
 Bundle 'rking/vim-ruby-refactoring'
 Bundle 'tpope/vim-dispatch'
-Bundle 'airblade/vim-gitgutter'
 
 Bundle 'nono/vim-handlebars'
 Bundle 'kchmck/vim-coffee-script'
@@ -77,7 +76,7 @@ set incsearch
 set gdefault
 set laststatus=2
 set list
-set listchars=trail:·
+set listchars=trail:.
 set modelines=5
 set nobackup
 set noeol
@@ -326,9 +325,6 @@ let g:clojure_align_multiline_strings = 1
 
 colorscheme badwolf
 
-nmap gh <Plug>GitGutterNextHunk
-nmap gH <Plug>GitGutterPrevHunk
-
 syntax on
 filetype indent plugin on
 
@@ -354,6 +350,11 @@ map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
 map <Leader>r :call RunAllSpecs()<CR>
+
+if executable("spring")
+  let g:rspec_command = "!bundle exec spring rspec {spec}"
+endif
+
 if executable("zeus")
   let g:rspec_command = "!bundle exec zeus rspec {spec}"
 endif
