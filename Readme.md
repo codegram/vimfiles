@@ -8,7 +8,7 @@ These are the new Codegram vimfiles!
 
 If you trust me, do this:
 
-    rm -fR ~/.vim && git clone https://github.com/codegram/vimfiles.git ~/.vim && rm ~/.vimrc && ln -s ~/.vim/vimrc ~/.vimrc && git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle && vim +BundleInstall +qa! && clear && echo "Done! :)"
+    rm -fR ~/.vim && git clone https://github.com/codegram/vimfiles.git ~/.vim && rm ~/.vimrc && ln -s ~/.vim/vimrc ~/.vimrc && git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle && vim +BundleInstall +qa! && cd ~./vim/bundle/vimproc.vim && make && clear && echo "Done! :)"
 
 ### Manual way
 
@@ -30,6 +30,10 @@ Set up your `~/vimrc.local` with your custom plugins, themes, for example:
 Open up Vim, and issue this command:
 
     :BundleInstall
+
+Now compile the vimproc extension:
+
+    cd ~/.vim/bundle/vimproc.vim && make
 
 TA-DA! Everything's done!
 
@@ -95,16 +99,8 @@ directory to generate the tag list.
   method, whatever
 * `<C-p>` to come back.
 * `<F7>` / `<F9>` to rotate among multiple definitions of the same tag.
-* `<Leader>c` to search among tags with the CtrlP plugin.
+* `<Leader>c` to search among tags with the Unite plugin.
 * `<Leader>b` to toggle the Tagbar
-
-### [ctrlp](https://github.com/kien/ctrlp)
-
-Fuzzy-find and open files at top speed!
-
-* `,o` To open the Ctrl-p window. Start typing a file name and press Enter.
-  Plus, if you add a colon and an action it will be performed afterwards
-  (`:45` will open the file and go to the line 45).
 
 ### [vim-endwise](https://github.com/tpope/vim-endwise)
 
@@ -125,6 +121,14 @@ Use Git from Vim.
 ### [vim-rails](https://github.com/tpope/vim-rails)
 
 Integration with Rails.
+
+### [unite.vim](https://github.com/Shougo/unite.vim)
+
+The mother of all fuzzy finders.
+
+* `<leader>o` searches files.
+* `<leader>a` searches content with Ack/Ag.
+* `<leader>c` searches tags.
 
 ### [vim-surround](https://github.com/tpope/vim-surround)
 

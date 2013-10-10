@@ -25,7 +25,9 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-endwise'
 Bundle 'Townk/vim-autoclose'
 Bundle 'jmartindf/vim-tcomment'
-Bundle 'kien/ctrlp.vim'
+Bundle 'Shougo/vimproc.vim'
+Bundle 'Shougo/unite.vim'
+Bundle 'tsukkee/unite-tag'
 
 Bundle 'mattn/webapi-vim'
 Bundle 'mattn/gist-vim'
@@ -42,7 +44,7 @@ Bundle 'airblade/vim-gitgutter'
 Bundle 'nono/vim-handlebars'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'pangloss/vim-javascript'
-Bundle 'scrooloose/nerdtree'
+" Bundle 'scrooloose/nerdtree'
 
 Bundle 'vim-scripts/ctags.vim'
 Bundle 'mrxd/bufkill.vim'
@@ -283,11 +285,7 @@ map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 map <F7> :tnext<CR>
 map <F9> :tprev<CR>
 
-" Ctrl-p
-let g:ctrlp_map = '<leader>o'
-let g:ctrlp_custom_ignore = '\v[\/](doc|tmp|log|coverage)$'
-
-" NERDtree
+" " NERDtree
 nmap <silent> <leader>p :NERDTreeToggle<cr>%
 " Surround
 " ,' switches ' and "
@@ -357,5 +355,21 @@ if executable("zeus")
   let g:rspec_command = "!zeus rspec {spec}"
 endif
 
-nnoremap <leader>c :CtrlPTag<cr>
 nnoremap <silent> <Leader>b :TagbarToggle<CR>
+
+" Unite.vim
+" Always fuzzy match
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+" File searching with ,o
+nnoremap <leader>o :Unite -start-insert file_rec/async<cr>
+" Content searching with ,a
+if executable('ag')
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
+  let g:unite_source_grep_recursive_opt = ''
+endif
+nnoremap <leader>a :Unite -start-insert grep:.<cr>
+" Tag searching with ,c
+nnoremap <leader>c :Unite -start-insert tag<cr>
+
+
