@@ -5,6 +5,7 @@
 set nocompatible
 
 set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.powerline/powerline/bindings/vim
 call vundle#rc()
 Bundle 'gmarik/vundle'
 
@@ -17,14 +18,13 @@ let maplocalleader = "."
 " -------
 " BUNDLES
 " -------
-
+"
 Bundle 'rking/ag.vim'
 Bundle 'thoughtbot/vim-rspec'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-endwise'
 Bundle 'Townk/vim-autoclose'
 Bundle 'jmartindf/vim-tcomment'
-Bundle 'Lokaltog/vim-powerline'
 Bundle 'kien/ctrlp.vim'
 
 Bundle 'mattn/webapi-vim'
@@ -49,6 +49,7 @@ Bundle 'vim-ruby/vim-ruby'
 Bundle 'scrooloose/syntastic'
 
 Bundle 'codegram/vim-haml2slim'
+Bundle 'majutsushi/tagbar'
 
 " Default color theme
 Bundle 'sjl/badwolf'
@@ -130,6 +131,7 @@ autocmd FileType python set sw=4 sts=4 et
 autocmd BufRead *.md  set ai formatoptions=tcroqn2 comments=n:&gt;
 autocmd BufRead *.markdown  set ai formatoptions=tcroqn2 comments=n:&gt;
 autocmd BufWritePre * :%s/\s\+$//e " strip trailing whitespace
+
 " --------
 " MAPPINGS
 " --------
@@ -167,7 +169,6 @@ noremap <tab> :bn<CR>
 noremap <S-tab> :bp<CR>
 nmap <leader>d :bd<CR>
 nmap <leader>D :bufdo bd<CR>
-nmap <silent> <leader>b :FufBuffer<CR>
 
 " Splits
 nnoremap <leader>v :vs<CR> <C-w>l
@@ -360,3 +361,6 @@ if executable("zeus")
 endif
 
 imap jk <Esc>
+
+nnoremap <leader>t :CtrlPTag<cr>
+nnoremap <silent> <Leader>b :TagbarToggle<CR>
