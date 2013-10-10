@@ -37,6 +37,7 @@ Bundle 'slim-template/vim-slim'
 Bundle 'leebo/vim-slim'
 Bundle 'rking/vim-ruby-refactoring'
 Bundle 'tpope/vim-dispatch'
+Bundle 'airblade/vim-gitgutter'
 
 Bundle 'nono/vim-handlebars'
 Bundle 'kchmck/vim-coffee-script'
@@ -77,7 +78,7 @@ set incsearch
 set gdefault
 set laststatus=2
 set list
-set listchars=trail:.
+set listchars=trail:·
 set modelines=5
 set nobackup
 set noeol
@@ -183,9 +184,6 @@ set pastetoggle=<F2>
 " Git blame
 vmap <leader>gb :Gblame<CR>
 
-" Execute current buffer as ruby
-" map <leader>r :!ruby -I"lib:test" %<cr>
-
 " Rename current file
 function! RenameFile()
     let old_name = expand('%')
@@ -258,10 +256,6 @@ map <leader>T :call RunNearestTest()<CR>
 " PLUG-IN SETTINGS
 " ----------------
 
-" Powerline (fancy status bar)
-let g:Powerline_symbols = 'fancy'
-let g:Powerline_cache_enabled = 1
-
 " Ag (Regex-based search)
 nmap <leader>a :Ag
 " Rotating among results
@@ -326,6 +320,9 @@ let g:clojure_align_multiline_strings = 1
 
 colorscheme badwolf
 
+nmap gh <Plug>GitGutterNextHunk
+nmap gH <Plug>GitGutterPrevHunk
+
 syntax on
 filetype indent plugin on
 
@@ -357,10 +354,8 @@ if executable("spring")
 endif
 
 if executable("zeus")
-  let g:rspec_command = "!bundle exec zeus rspec {spec}"
+  let g:rspec_command = "!zeus rspec {spec}"
 endif
 
-imap jk <Esc>
-
-nnoremap <leader>t :CtrlPTag<cr>
+nnoremap <leader>c :CtrlPTag<cr>
 nnoremap <silent> <Leader>b :TagbarToggle<CR>

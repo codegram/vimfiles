@@ -71,10 +71,7 @@ TA-DA! Everything's done!
 
 * `<F2>` to toggle Paste mode (to paste stuff from the system clipboard).
 * `,gb` in Visual mode to perform a `git blame` on the selected lines.
-* `,r` runs the current buffer in the current RVM Ruby, including `lib` and
   `test`.
-* `<tab>` in Insert mode either indents or autocompletes, depending on the
-  context.
 
 ## Plug-ins
 
@@ -91,14 +88,15 @@ Auto-closes, parens, curly braces, everything.
 
 ### [ctags](https://github.com/vim-scripts/ctags)
 
-First, `brew install ctags` and run the `tags` command (found in our
-[dotfiles](http://github.com/codegram/dotfiles)) on your working directory to
-generate the tag list.
+First, `brew install ctags` and run the `ctags -R .` command on your working
+directory to generate the tag list.
 
 * `<C-]>` to go to the definition of the word under the cursor (constant,
   method, whatever
 * `<C-p>` to come back.
 * `<F7>` / `<F9>` to rotate among multiple definitions of the same tag.
+* `<Leader>c` to search among tags with the CtrlP plugin.
+* `<Leader>b` to toggle the Tagbar
 
 ### [ctrlp](https://github.com/kien/ctrlp)
 
@@ -119,9 +117,10 @@ Use Git from Vim.
 * `,gs`: Git status.
 * `,gc`: Git commit.
 
-### [vim-powerline](https://github.com/Lokaltog/vim-powerline)
+### [gist.vim](https://github.com/mattn/gist-vim)
 
-A fancy status line.
+* `:Gist [-p|-P]`: Post a [p]rivate or [P]ublic gist with the current buffer.
+  You can also run it from Visual mode to post only a part.
 
 ### [vim-rails](https://github.com/tpope/vim-rails)
 
