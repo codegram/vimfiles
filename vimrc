@@ -38,7 +38,7 @@ Bundle 'tpope/vim-fireplace'
 Bundle 'ervandew/supertab'
 
 Bundle 'junkblocker/patchreview-vim'
-Bundle 'vim-codereview'
+Bundle 'codegram/vim-codereview'
 
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-bundler'
@@ -60,6 +60,9 @@ Bundle 'scrooloose/syntastic'
 
 Bundle 'codegram/vim-haml2slim'
 Bundle 'majutsushi/tagbar'
+
+Bundle 'rizzatti/funcoo.vim'
+Bundle 'rizzatti/dash.vim'
 
 " Default color theme
 Bundle 'sjl/badwolf'
