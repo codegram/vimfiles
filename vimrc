@@ -22,7 +22,6 @@ let maplocalleader = "."
 Bundle 'rking/ag.vim'
 Bundle 'thoughtbot/vim-rspec'
 Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-endwise'
 Bundle 'Townk/vim-autoclose'
 Bundle 'jmartindf/vim-tcomment'
 Bundle 'Shougo/vimproc.vim'
@@ -32,11 +31,18 @@ Bundle 'tsukkee/unite-tag'
 Bundle 'mattn/webapi-vim'
 Bundle 'mattn/gist-vim'
 
+Bundle 'guns/vim-clojure-static'
+Bundle 'tpope/vim-classpath'
+Bundle 'tpope/vim-fireplace'
+
+Bundle 'ervandew/supertab'
+
+Bundle 'junkblocker/patchreview-vim'
+Bundle 'vim-codereview'
+
 Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-bundler'
 Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-cucumber'
-Bundle 'slim-template/vim-slim'
-Bundle 'leebo/vim-slim'
 Bundle 'rking/vim-ruby-refactoring'
 Bundle 'tpope/vim-dispatch'
 Bundle 'airblade/vim-gitgutter'
@@ -46,6 +52,7 @@ Bundle 'kchmck/vim-coffee-script'
 Bundle 'pangloss/vim-javascript'
 " Bundle 'scrooloose/nerdtree'
 
+Bundle 'slim-template/vim-slim'
 Bundle 'vim-scripts/ctags.vim'
 Bundle 'mrxd/bufkill.vim'
 Bundle 'vim-ruby/vim-ruby'
@@ -57,6 +64,8 @@ Bundle 'majutsushi/tagbar'
 " Default color theme
 Bundle 'sjl/badwolf'
 colorscheme badwolf
+
+Bundle 'wting/rust.vim'
 
 " ------------
 " VIM SETTINGS
@@ -118,7 +127,8 @@ set iskeyword-=_
 "set clipboard=unnamed
 
 if has("gui_running")
-    set guioptions-=T " no toolbar set guioptions-=m " no menus
+    set guioptions-=T " no toolbar
+    set guioptions-=m " no menus
     set guioptions-=r " no scrollbar on the right
     set guioptions-=R " no scrollbar on the right
     set guioptions-=l " no scrollbar on the left
@@ -352,7 +362,7 @@ if executable("spring")
 endif
 
 if executable("zeus")
-  let g:rspec_command = "!zeus rspec {spec}"
+  let g:rspec_command = "compiler rspec | set makeprg=zeus | Make rspec {spec}"
 endif
 
 nnoremap <silent> <Leader>b :TagbarToggle<CR>
