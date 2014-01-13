@@ -79,11 +79,11 @@ TA-DA! Everything's done!
 
 ## Plug-ins
 
-### [ack](https://github.com/mileszs/ack.vim)
+### [ag](https://github.com/rking/ag.vim)
 
-Use Ack to search through your code.
+Use Ag (the silver searcher) to search through your code.
 
-* `,a` performs an Ack search.
+* `,a` performs an Ag search.
 * `<C-n>` / `<C-p>`: Rotate among results.
 
 ### [vim-autoclose](https://github.com/Townk/vim-autoclose)
@@ -99,7 +99,7 @@ directory to generate the tag list.
   method, whatever
 * `<C-p>` to come back.
 * `<F7>` / `<F9>` to rotate among multiple definitions of the same tag.
-* `<Leader>c` to search among tags with the Unite plugin.
+* `<Leader>c` to search among tags with the CtrlP plugin.
 * `<Leader>b` to toggle the Tagbar
 
 ### [vim-endwise](https://github.com/tpope/vim-endwise)
@@ -121,14 +121,6 @@ Use Git from Vim.
 ### [vim-rails](https://github.com/tpope/vim-rails)
 
 Integration with Rails.
-
-### [unite.vim](https://github.com/Shougo/unite.vim)
-
-The mother of all fuzzy finders.
-
-* `<leader>o` searches files.
-* `<leader>a` searches content with Ack/Ag.
-* `<leader>c` searches tags.
 
 ### [vim-surround](https://github.com/tpope/vim-surround)
 

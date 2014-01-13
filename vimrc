@@ -24,9 +24,7 @@ Bundle 'thoughtbot/vim-rspec'
 Bundle 'tpope/vim-surround'
 Bundle 'Townk/vim-autoclose'
 Bundle 'jmartindf/vim-tcomment'
-Bundle 'Shougo/vimproc.vim'
-Bundle 'Shougo/unite.vim'
-Bundle 'tsukkee/unite-tag'
+Bundle 'kien/ctrlp.vim'
 
 Bundle 'mattn/webapi-vim'
 Bundle 'mattn/gist-vim'
@@ -370,19 +368,8 @@ endif
 
 nnoremap <silent> <Leader>b :TagbarToggle<CR>
 
-" Unite.vim
-" Always fuzzy match
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-" File searching with ,o
-nnoremap <leader>o :Unite -start-insert file_rec/async<cr>
-" Content searching with ,a
-if executable('ag')
-  let g:unite_source_grep_command = 'ag'
-  let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
-  let g:unite_source_grep_recursive_opt = ''
-endif
-nnoremap <leader>a :Unite -start-insert grep:.<cr>
-" Tag searching with ,c
-nnoremap <leader>c :Unite -start-insert tag<cr>
-
+" Ctrlp.vim
+let g:ctrlp_map = '<leader>o'
+let g:ctrlp_working_path_mode = 'ra'
+map <leader>c :CtrlPTag<cr>
 
