@@ -27,8 +27,12 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'mattn/webapi-vim'
 Bundle 'mattn/gist-vim'
 
+" Clojure
 Bundle 'tpope/vim-classpath'
 Bundle 'tpope/vim-fireplace'
+Bundle 'kien/rainbow_parentheses.vim'
+Bundle 'guns/vim-clojure-static'
+Bundle 'guns/vim-clojure-highlight'
 
 Bundle 'sheerun/vim-polyglot'
 
@@ -226,6 +230,12 @@ let g:gist_post_private = 1
 let g:ctrlp_map = '<leader>o'
 let g:ctrlp_working_path_mode = 'ra'
 map <leader>c :CtrlPTag<cr>
+
+" Clojure
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
 
 " --------------------
 " CUSTOM CONFIGURATION
