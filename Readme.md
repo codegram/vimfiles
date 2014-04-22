@@ -8,7 +8,7 @@ These are the new Codegram vimfiles!
 
 If you trust me, do this:
 
-    rm -fR ~/.vim && git clone https://github.com/codegram/vimfiles.git ~/.vim && rm ~/.vimrc && ln -s ~/.vim/vimrc ~/.vimrc && git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle && vim +BundleInstall +qa! && cd ~./vim/bundle/vimproc.vim && make && clear && echo "Done! :)"
+    rm -fR ~/.vim && git clone https://github.com/codegram/vimfiles.git ~/.vim && rm ~/.vimrc && ln -s ~/.vim/vimrc ~/.vimrc && git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle && vim +BundleInstall +qa! && clear && echo "Done! :)"
 
 ### Manual way
 
@@ -30,10 +30,6 @@ Set up your `~/vimrc.local` with your custom plugins, themes, for example:
 Open up Vim, and issue this command:
 
     :BundleInstall
-
-Now compile the vimproc extension:
-
-    cd ~/.vim/bundle/vimproc.vim && make
 
 TA-DA! Everything's done!
 
@@ -66,11 +62,6 @@ TA-DA! Everything's done!
 * `<C-k>` switches to the split above.
 * `<C-l>` switches to the right split.
 
-### Running tests (Ruby)
-
-* `,t` runs the current test file (RSpec, MiniTest or Cucumber).
-* `,T` runs the specific test under the cursor (RSpec or Cucumber).
-
 ### Other
 
 * `<F2>` to toggle Paste mode (to paste stuff from the system clipboard).
@@ -102,10 +93,6 @@ directory to generate the tag list.
 * `<Leader>c` to search among tags with the CtrlP plugin.
 * `<Leader>b` to toggle the Tagbar
 
-### [vim-endwise](https://github.com/tpope/vim-endwise)
-
-Puts `end` after a method definition, if clause, etc. (Ruby)
-
 ### [vim-fugitive](https://github.com/tpope/vim-powerline)
 
 Use Git from Vim.
@@ -117,10 +104,6 @@ Use Git from Vim.
 
 * `:Gist [-p|-P]`: Post a [p]rivate or [P]ublic gist with the current buffer.
   You can also run it from Visual mode to post only a part.
-
-### [vim-rails](https://github.com/tpope/vim-rails)
-
-Integration with Rails.
 
 ### [vim-surround](https://github.com/tpope/vim-surround)
 
