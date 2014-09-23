@@ -33,6 +33,11 @@ NeoBundle 'scrooloose/syntastic'
 NeoBundle 'guns/vim-clojure-static'
 NeoBundle 'tpope/vim-classpath'
 NeoBundle 'tpope/vim-fireplace'
+NeoBundle 'guns/vim-clojure-highlight'
+NeoBundle 'kien/rainbow_parentheses.vim'
+NeoBundle 'tpope/vim-leiningen'
+NeoBundle 'tpope/vim-projectionist'
+NeoBundle 'tpope/vim-dispatch'
 
 " Tab for completion
 NeoBundle 'ervandew/supertab'
@@ -43,6 +48,8 @@ NeoBundle 'majutsushi/tagbar'
 
 NeoBundle 'rizzatti/funcoo.vim'
 NeoBundle 'rizzatti/dash.vim'
+
+NeoBundle 'gcmt/wildfire.vim'
 
 NeoBundle 'sjl/badwolf'
 
@@ -113,7 +120,7 @@ set formatoptions=n
 set colorcolumn=79
 set tw=79
 set t_Co=256
-set iskeyword-=_
+set iskeyword+=_
 
 if has("gui_running")
   set guioptions-=T " no toolbar
@@ -242,6 +249,15 @@ let g:syntastic_check_on_open=1
 let g:syntastic_echo_current_error=0
 let g:syntastic_auto_jump=0
 let g:syntastic_auto_loc_list=0
+
+" Clojure
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
+" Wildfire
+nmap <leader>s <Plug>(wildfire-quick-select)
 
 " --------------------
 " CUSTOM CONFIGURATION
